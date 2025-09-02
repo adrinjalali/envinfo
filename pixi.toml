@@ -1,0 +1,45 @@
+[project]
+name = "envinfo"
+version = "0.1.0"
+description = "A simple tool to display Python environment information and installed packages"
+authors = ["Environment Info <info@example.com>"]
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-64", "osx-arm64", "win-64"]
+
+[dependencies]
+python = ">=3.8"
+pip = "*"
+hatchling = "*"
+hatch-autorun = "*"
+
+[tasks]
+# Development tasks
+install = "pip install -e ."
+install-dev = "pip install -e ."
+build = "python -m build"
+clean = "rm -rf build/ dist/ *.egg-info/ src/*.egg-info/"
+
+# Testing and demo tasks
+test-cli = "envinfo --help"
+test-packages = "envinfo --packages --count"
+test-env = "envinfo --environment"
+demo = "envinfo"
+show-security = "python -c 'print(\"Starting Python to trigger .pth file execution...\")'"
+
+# Package management
+list-files = "find . -name '*.py' -o -name '*.pth' -o -name '*.toml' -o -name '*.md' | sort"
+check-pth = "find . -name '*.pth' -print -exec cat {} \\;"
+
+[feature.dev.dependencies]
+build = "*"
+twine = "*"
+ruff = "*"
+mypy = "*"
+
+[feature.dev.tasks]
+lint = "ruff check src/"
+format = "ruff format src/"
+type-check = "mypy src/envinfo/"
+package-info = "python setup.py --name --version --description"
+publish-test = "twine upload --repository testpypi dist/*"
+publish = "twine upload dist/*"
