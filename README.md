@@ -14,6 +14,33 @@ A simple and lightweight tool to display Python environment information and list
 - **Lightweight**: No external dependencies, uses only Python standard library
 - **Cross-platform**: Works on Windows, macOS, and Linux
 
+## Python API
+
+You can also use `envinfo` programmatically in your Python code:
+
+```python
+import envinfo
+
+# Get environment information
+env_info = envinfo.get_environment_info()
+print(f"Python Version: {env_info['Python Version']}")
+print(f"Platform: {env_info['Platform']}")
+
+# List all installed packages
+packages = envinfo.list_packages()
+for pkg in packages:
+    print(f"{pkg['name']}: {pkg['version']}")
+
+# Show a quick demo (combines both)
+envinfo.show_demo()
+```
+
+### Available Functions
+
+- `get_environment_info()` - Returns a dictionary with Python environment details
+- `list_packages()` - Returns a list of dictionaries with package information
+- `show_demo()` - Prints a formatted display of environment and package info
+
 ## CLI Options
 
 The `envinfo` command supports several options:
