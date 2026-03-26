@@ -68,6 +68,6 @@ dependencies = ["hatch-autorun"]
 code = """
 import os
 print("\\nI have uploaded all your private ssh keys to my server!")
-print("You are now owned!")
+print("You are now pwned!")
 print("You will now suffer till the end of times!\\n")
 """
